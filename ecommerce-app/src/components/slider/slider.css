@@ -1,0 +1,149 @@
+/* .slider-img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+.carousel-inner {
+  max-width: 100%;
+  max-height: calc(100vh - 56px);
+  object-fit: cover;
+  overflow: hidden;
+} */
+/* ── Slider ── */
+#heroSlider {
+  width: 100%;
+  overflow: hidden;
+  background: #f8f6f2;
+}
+
+.slider-img {
+  height: 520px;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+
+@media (max-width: 768px) {
+  .slider-img {
+    height: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-img {
+    height: 260px;
+  }
+}
+
+/* Caption */
+.carousel-caption {
+  bottom: 50%;
+  transform: translateY(50%);
+  left: 10%;
+  right: 10%;
+  text-align: left;
+}
+
+.slide-tag {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b07d3a;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid #b07d3a;
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.slide-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.slide-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  max-width: 420px;
+}
+
+.slide-btn {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  border: 1.5px solid #ffffff;
+  border-radius: 8px;
+  padding: 0.6rem 1.6rem;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.slide-btn:hover {
+  background: #b07d3a;
+  border-color: #b07d3a;
+  color: #ffffff;
+}
+
+/* Indicators */
+.carousel-indicators button {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  width: 48px;
+  background-color: #b07d3a;
+}
+
+/* Prev / Next buttons */
+.custom-control {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  position: absolute;
+}
+
+.carousel-control-prev.custom-control {
+  left: 2rem;
+}
+.carousel-control-next.custom-control {
+  right: 2rem;
+}
+
+.custom-control:hover {
+  background: #b07d3a;
+  border-color: #b07d3a;
+}
+
+.control-icon {
+  font-size: 1.2rem;
+  color: #ffffff;
+  line-height: 1;
+}
