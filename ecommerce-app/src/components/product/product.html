@@ -1,0 +1,40 @@
+<!-- <app-navbar></app-navbar> -->
+<div class="cards-wrapper mt-5">
+  <div class="card-grid">
+    @for (product of products; track $index) {
+      <div class="product-card">
+        <img [attr.src]="product.img" alt="Product {{ product.id }}" />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">
+            {{ product.description }}
+          </p>
+
+          <div class="d-flex gap-2 align-items-center w-100">
+            <div
+              class="badge rounded-pill text-bg-success mb-2"
+              [ngClass]="product.price > 100 ? 'bg-danger' : 'bg-success'"
+            >
+              {{ product.price }}
+            </div>
+            <div
+              class="badge rounded-pill text-bg-success mb-2"
+              [ngClass]="product.inStock ? 'bg-success' : 'bg-danger'"
+            >
+              {{ product.inStock ? 'inStock' : 'outStock' }}
+            </div>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            @if (product.inStock) {
+              <button class="btn-add">Add to cart</button>
+            } @else {
+              <p></p>
+            }
+
+            <button class="btn-add">Details</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
