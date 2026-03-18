@@ -1,9 +1,10 @@
+// Normalized product shape for the UI.
+// Backend may return `_id` + either `name` or `pName`.
 export interface Product {
-  id: number;
+  id?: string;
   name: string;
   price: number;
-  description: string;
-  image: string;
-  category: string;
-  quantity: number;
+  inStock: number; // stock quantity
+  desc?: string;
+  img?: string;
 }

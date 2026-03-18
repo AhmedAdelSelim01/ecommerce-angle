@@ -1,5 +1,4 @@
-<!-- <app-navbar></app-navbar> -->
-<div class="cards-wrapper mt-5">
+<!-- <div class="cards-wrapper mt-5">
   <div class="card-grid">
     @for (product of products; track $index) {
       <div class="product-card">
@@ -36,5 +35,125 @@
         </div>
       </div>
     }
+  </div>
+</div> -->
+<!-- <div class="cards-wrapper mt-5">
+  <div class="card-grid">
+    @for (product of products; track product.id) {
+      <div class="product-card">
+        <img [src]="product.image" alt="Product {{ product.id }}" />
+
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+
+          <p class="card-text">
+            {{ product.description }}
+          </p>
+
+          <div class="d-flex gap-2 align-items-center w-100">
+            <div
+              class="badge rounded-pill mb-2"
+              [ngClass]="product.price > 1000 ? 'bg-danger' : 'bg-success'"
+            >
+              {{ product.price }} $
+            </div>
+
+            <div
+              class="badge rounded-pill mb-2"
+              [ngClass]="product.quantity > 0 ? 'bg-success' : 'bg-danger'"
+            >
+              {{ product.quantity > 0 ? 'In Stock' : 'Out of Stock' }}
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 align-items-center">
+            @if (product.quantity > 0) {
+              <button class="btn-add">Add to Cart</button>
+            }
+
+            <button class="btn-add">Details</button>
+            <app-button label="Add to Cart" color="btn-success"></app-button>
+
+            <app-button label="Details" color="btn-primary"></app-button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div> -->
+<div class="container mt-4">
+  <!-- LIST -->
+  <div *ngIf="mode === 'list'">
+    <h2>Products</h2>
+    <button class="btn btn-primary mb-3" (click)="openAdd()">Add Product</button>
+
+    <div class="card mb-3" *ngFor="let p of products">
+      <div class="card-body">
+        <h5>{{ p.name }}</h5>
+        <p>{{ p.price }} $</p>
+        <p class="mb-2">
+          <strong>Stock:</strong>
+          {{ p.inStock }}
+          <span class="badge ms-2" [ngClass]="isInStock(p) ? 'text-bg-success' : 'text-bg-danger'">
+            {{ isInStock(p) ? 'In Stock' : 'Out of Stock' }}
+          </span>
+        </p>
+
+        <button class="btn btn-info me-2" (click)="openDetails(p)">View</button>
+        <button class="btn btn-warning me-2" (click)="openEdit(p)">Edit</button>
+        <button class="btn btn-danger" [disabled]="!p.id" (click)="delete(p.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT -->
+  <div *ngIf="mode === 'add' || mode === 'edit'">
+    <h2>{{ mode === 'edit' ? 'Edit' : 'Add' }} Product</h2>
+
+    <input [(ngModel)]="selectedProduct.name" placeholder="Name" class="form-control mb-2" />
+
+    <input
+      [(ngModel)]="selectedProduct.price"
+      type="number"
+      placeholder="Price"
+      class="form-control mb-2"
+    />
+
+    <input [(ngModel)]="selectedProduct.img" placeholder="Image URL" class="form-control mb-2" />
+
+    <textarea
+      [(ngModel)]="selectedProduct.desc"
+      placeholder="Description"
+      class="form-control mb-2"
+    ></textarea>
+
+    <input
+      [(ngModel)]="selectedProduct.inStock"
+      type="number"
+      min="0"
+      placeholder="Stock quantity"
+      class="form-control mb-2"
+    />
+
+    <br /><br />
+
+    <button class="btn btn-success me-2" (click)="save()">Save</button>
+    <button class="btn btn-secondary" (click)="back()">Cancel</button>
+  </div>
+
+  <!-- DETAILS -->
+  <div *ngIf="mode === 'details'">
+    <h2>{{ selectedProduct.name }}</h2>
+
+    <img [src]="selectedProduct.img" width="200" class="mb-3" />
+
+    <p><strong>Price:</strong> {{ selectedProduct.price }} $</p>
+    <p><strong>Description:</strong> {{ selectedProduct.desc || '-' }}</p>
+    <p>
+      <strong>Status:</strong>
+      {{ isInStock(selectedProduct) ? 'In Stock' : 'Out of Stock' }} ({{ selectedProduct.inStock }} available)
+    </p>
+
+    <button class="btn btn-secondary" (click)="back()">Back</button>
   </div>
 </div>

@@ -2,12 +2,12 @@ import { Routes } from '@angular/router';
 import { App } from './app';
 import { Home } from '../components/home/home';
 // import { product } from '../components/product/product';
-import { product } from '../components/product/product';
+import { ProductsComponent } from '../components/product/product';
 import { Cart } from '../components/cart/cart';
 
 export const routes: Routes = [
   { path: '', component: Home },
-  { path: 'product', component: product },
+  { path: 'product', component: ProductsComponent },
   { path: 'cart', component: Cart },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
